@@ -7,9 +7,6 @@ public class NoNamePhoneFactory extends FactoryPhone {
 
     @Override
     AbstractPhone createPhone(String nameModel, String serialNumber) {
-        if (serialNumber.equalsIgnoreCase("nosn")) {
-            return new NoNamePhone(nameModel, "");
-        }
         return new NoNamePhone(nameModel, serialNumber);
     }
 }

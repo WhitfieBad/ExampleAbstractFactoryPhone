@@ -7,21 +7,11 @@ public abstract class FactoryPhone {
 
     public static AbstractPhone createPhone(String phoneData) throws NotFoundTypePhone {
         FactoryPhone factoryPhone = null;
-        String namePhone = "";
-        String nameModel = "";
-        String serialNumber = "";
+        String arrayDataPhone[] = phoneData.split("\\|", 3);
 
-        String arrayDataPhone[] = phoneData.split("\\|");
-        if (arrayDataPhone.length == 2 || arrayDataPhone.length == 3) {
-            namePhone = arrayDataPhone[0];
-            nameModel = arrayDataPhone[1];
-        } else {
-            throw new NotFoundTypePhone();
-        }
-
-        if (arrayDataPhone.length == 3) {
-            serialNumber = arrayDataPhone[2];
-        }
+        String namePhone = arrayDataPhone[0];
+        String nameModel = arrayDataPhone[1];
+        String serialNumber = arrayDataPhone[2].equalsIgnoreCase("nosn") ? "" : arrayDataPhone[2];
 
         switch (namePhone.toLowerCase()) {
             case "" :
@@ -32,8 +22,10 @@ public abstract class FactoryPhone {
             default: throw new NotFoundTypePhone();
         }
 
-        if (nameModel.isEmpty() || (!(factoryPhone instanceof NoNamePhoneFactory) && serialNumber.isEmpty())) {
-            throw new NotFoundTypePhone();
+        if (nameModel.isEmpty()) {
+            throw new NotFoundTypePhone("Model is Empty");
+        } else if (!(factoryPhone instanceof NoNamePhoneFactory) && serialNumber.isEmpty()) {
+            throw new NotFoundTypePhone("No Serial Number");
         }
 
         return factoryPhone.createPhone(nameModel, serialNumber);

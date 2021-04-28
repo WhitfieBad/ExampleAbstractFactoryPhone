@@ -1,12 +1,12 @@
 package ua.whitfie.model;
 
-public abstract class AbstractPhone {
+public abstract class AbstractProduct {
 
     private String namePhone;
     private String nameModel;
     private String serialNumber;
 
-    public AbstractPhone(String namePhone, String nameModel, String serialNumber) {
+    public AbstractProduct(String namePhone, String nameModel, String serialNumber) {
         this.namePhone = namePhone;
         this.nameModel = nameModel;
         this.serialNumber = serialNumber;

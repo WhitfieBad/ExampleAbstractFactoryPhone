@@ -26,9 +26,6 @@ public abstract class AbstractProduct {
 
     @Override
     public String toString() {
-        String namePhone = this.namePhone.isEmpty() ? "NoName" : this.namePhone;
-        String nameModel = this.nameModel.isEmpty() ? "NoNameModel" : this.nameModel;
-        String serialNumber = this.serialNumber.isEmpty() ? "NoSerialnumber" : this.serialNumber;
         return namePhone + " " + nameModel + " " + serialNumber;
     }
 }

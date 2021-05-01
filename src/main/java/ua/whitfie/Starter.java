@@ -1,7 +1,7 @@
 package ua.whitfie;
 
-import ua.whitfie.abstractfactory.FactoryProduct;
-import ua.whitfie.exeptions.NotFoundTypeProduct;
+import ua.whitfie.abstractfactory.BrandFactoryProvider;
+import ua.whitfie.abstractfactory.ProductBrandFactory;
 import ua.whitfie.model.AbstractProduct;
 
 import java.io.IOException;
@@ -19,15 +19,9 @@ public class Starter {
 
         for (String productString: phonesDataList) {
             String arrayArguments[] = productString.split("[^\\w\\s]", 3);
-            String nameModel = arrayArguments[1];
-            String nameCompany = arrayArguments[0].equalsIgnoreCase("noname") ? "" : arrayArguments[0];
-            String serialNumber = arrayArguments[2].equalsIgnoreCase("nosn") ? "" : arrayArguments[2];
 
-            try {
-                phones.add(FactoryProduct.createProduct(nameCompany, nameModel, serialNumber));
-            } catch (NotFoundTypeProduct notFoundTypeProduct) {
-                notFoundTypeProduct.printStackTrace();
-            }
+            ProductBrandFactory<AbstractProduct> factor = BrandFactoryProvider.getFactoryOfBrandName(arrayArguments[0]);
+            phones.add(factor.create(arrayArguments[1], arrayArguments[2]));
         }
 
         phones.forEach(System.out::println);

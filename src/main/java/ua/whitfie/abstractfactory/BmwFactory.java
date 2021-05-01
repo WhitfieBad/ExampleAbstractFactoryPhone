@@ -1,12 +1,12 @@
 package ua.whitfie.abstractfactory;
 
 import ua.whitfie.model.AbstractProduct;
-import ua.whitfie.model.NoNameProduct;
+import ua.whitfie.model.BmwProduct;
 
-public class NoNameFactory implements ProductBrandFactory<AbstractProduct> {
+public class BmwFactory implements ProductBrandFactory<AbstractProduct> {
 
     @Override
     public AbstractProduct create(String nameModel, String serialNumber) {
-        return new NoNameProduct(nameModel, serialNumber);
+        return new BmwProduct(nameModel, serialNumber);
     }
 }

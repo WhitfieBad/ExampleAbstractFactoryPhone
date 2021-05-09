@@ -1,9 +1,10 @@
 package ua.whitfie.abstractfactory;
 
-public class BrandFactoryProvider {
+public class BrandFactoryProvider implements FactoryProvider<ProductBrandFactory> {
 
-    public static ProductBrandFactory getFactoryOfBrandName(String nameBrand) {
-        switch (nameBrand.toLowerCase()) {
+    @Override
+    public ProductBrandFactory getFactory(String arg) {
+        switch (arg.toLowerCase()) {
             case "china":
                 return new ChinaFactory();
             case "apple":

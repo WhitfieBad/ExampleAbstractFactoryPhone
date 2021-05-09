@@ -6,7 +6,7 @@ import ua.whitfie.model.ChinaProduct;
 public class ChinaFactory implements ProductBrandFactory<AbstractProduct> {
 
     @Override
-    public AbstractProduct create(String nameModel, String serialNumber) {
-        return new ChinaProduct(nameModel, serialNumber);
+    public AbstractProduct create(String nameModel) {
+        return new ChinaProduct(nameModel);
     }
 }

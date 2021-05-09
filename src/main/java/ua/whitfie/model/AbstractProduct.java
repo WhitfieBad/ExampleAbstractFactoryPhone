@@ -6,9 +6,18 @@ public abstract class AbstractProduct {
     private String nameModel;
     private String serialNumber;
 
+    public AbstractProduct(String namePhone, String nameModel) {
+        this.namePhone = namePhone;
+        this.nameModel = nameModel;
+    }
+
     public AbstractProduct(String namePhone, String nameModel, String serialNumber) {
         this.namePhone = namePhone;
         this.nameModel = nameModel;
+        this.serialNumber = serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 

@@ -6,7 +6,7 @@ import ua.whitfie.model.AppleProduct;
 public class AppleFactory implements ProductBrandFactory<AbstractProduct> {
 
     @Override
-    public AbstractProduct create(String nameModel, String serialNumber) {
-        return new AppleProduct(nameModel, serialNumber);
+    public AbstractProduct create(String nameModel) {
+        return new AppleProduct(nameModel);
     }
 }

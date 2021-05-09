@@ -1,7 +1,10 @@
 package ua.whitfie;
 
 import ua.whitfie.abstractfactory.BrandFactoryProvider;
+import ua.whitfie.abstractfactory.FactoryProvider;
 import ua.whitfie.abstractfactory.ProductBrandFactory;
+import ua.whitfie.decorator.RegexBrandFactoryDecorator;
+import ua.whitfie.decorator.RegexProviderFactoryDecorator;
 import ua.whitfie.model.AbstractProduct;
 
 import java.io.IOException;
@@ -17,11 +20,13 @@ public class Starter {
         List<AbstractProduct> phones = new ArrayList<>();
         List<String> phonesDataList = Files.readAllLines(Path.of(scanner.nextLine()));
 
-        for (String productString: phonesDataList) {
-            String arrayArguments[] = productString.split("[^\\w\\s]", 3);
+        FactoryProvider<ProductBrandFactory> factoryProvider = new BrandFactoryProvider();
+        factoryProvider = new RegexProviderFactoryDecorator(factoryProvider,":");
 
-            ProductBrandFactory<AbstractProduct> factor = BrandFactoryProvider.getFactoryOfBrandName(arrayArguments[0]);
-            phones.add(factor.create(arrayArguments[1], arrayArguments[2]));
+        for (String productString: phonesDataList) {
+            ProductBrandFactory<AbstractProduct> productBrandFactory = factoryProvider.getFactory(productString);
+            productBrandFactory = new RegexBrandFactoryDecorator(productBrandFactory, ":");
+            phones.add(productBrandFactory.create(productString));
         }
 
         phones.forEach(System.out::println);
